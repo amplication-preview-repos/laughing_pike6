@@ -1,0 +1,90 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Location {
+  city      String?
+  country   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  state     String?
+  timeZone  String?
+  updatedAt DateTime @updatedAt
+}
+
+model Role {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  roleName    String?
+  updatedAt   DateTime @updatedAt
+}
+
+model CompanySite {
+  createdAt   DateTime @default(now())
+  description String?
+  id          String   @id @default(cuid())
+  name        String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Transaction {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model Team {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model Rating {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model FieldModel {
+  capacity             Int?
+  createdAt            DateTime @default(now())
+  id                   String   @id @default(cuid())
+  price                Float?
+  servicesAvailability Json?
+  surfaceType          String?
+  updatedAt            DateTime @updatedAt
+}
+
+model PasswordRecoveryLog {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  avatar      Json?
+  createdAt   DateTime @default(now())
+  email       String?  @unique
+  facebook    String?
+  firstName   String?
+  id          String   @id @default(cuid())
+  lastName    String?
+  password    String
+  phoneNumber Int?
+  roles       Json
+  updatedAt   DateTime @updatedAt
+  username    String   @unique
+  whatsapp    String?
+}
